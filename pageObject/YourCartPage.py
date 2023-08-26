@@ -12,6 +12,7 @@ class YourCartPage(PageObject):
     update_cart_btn = 'updatecart'
     accept_terms = 'termsofservice'
     checkout_btn = 'checkout-buttons'
+    cart_prod_qty = 0
 
     def __init__(self, driver):
         super(YourCartPage, self).__init__(driver=driver)
@@ -34,11 +35,12 @@ class YourCartPage(PageObject):
         self.driver.find_element(By.NAME, self.update_cart_btn).click()
 
     def get_quantity(self):
-        return self.driver.find_element(By.CLASS_NAME, self.qty_field).text
+        cart_prod_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
 
-    def compare_qty(self, actual_qty, expected_qty):
-
-        if actual_qty != expected_qty:
+    def compare_qty(self):
+        cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
+        if self.cart_prod_qty != cart_new_qty:
+            print(cart_new_qty)
             return True
 
         return False

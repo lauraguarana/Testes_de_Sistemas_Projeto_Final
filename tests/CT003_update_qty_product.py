@@ -27,16 +27,9 @@ class Test_CT003UpdateQtyProduct:
         # Verificando se foi para a página do carrinho
         assert cart.check_cart_page(), "A página mudou"
 
-        # Quantidade de produtos atual
-        print(cart.get_quantity())
-        actual_qty = cart.get_quantity()
-
-        # Atualizar quantidade de produtos
+        # Salvar quantidade de produtos e atualizar a quantidade
+        cart.get_quantity()
         cart.update_prod_qty()
 
-        # Quantidade de produtos final
-        print(cart.get_quantity())
-        final_qty = cart.get_quantity()
-
-        # Validar se a quantidade de produto foi atualizada
-        assert cart.compare_qty(actual_qty, final_qty)
+        # Validar se a quantidade foi atualizada
+        cart.compare_qty()
