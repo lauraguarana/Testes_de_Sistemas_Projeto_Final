@@ -1,6 +1,6 @@
 from pageObject.LoginPage import LoginPage
 from pageObject.YourCartPage import YourCartPage
-class Test_CT004RemoveProductCart:
+class Test_CT005SearchProduct:
 
     def test_atualizar_qtd_produto(self, setup):
         home_page = setup
@@ -18,6 +18,5 @@ class Test_CT004RemoveProductCart:
         # Verificando se o login foi feito
         assert login.verify_login()
 
-        # Remover produto do carrinho
-        home_page.verify_shopping_cart_qty()
-        cart.remove_prod()
+        # Atualizar quantidade de produtos
+        home_page.search_product(productname='Notebook')

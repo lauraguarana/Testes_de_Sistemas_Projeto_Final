@@ -22,9 +22,10 @@ class YourCartPage(PageObject):
         self.driver.find_element(By.ID, self.accept_terms).click()
         self.driver.find_element(By.CLASS_NAME, self.checkout_btn).click()
 
-    def update_cart(self):
-        self.driver.find_element(By.NAME, self.update_cart_btn).click
-
     def update_prod_qty(self):
         self.driver.find_element(By.CLASS_NAME, self.qty_field).send_keys('3')
+        self.driver.find_element(By.NAME, self.update_cart_btn).click
+
+    def remove_prod(self):
+        self.driver.find_element(By.NAME, self.remove_product).click()
         self.driver.find_element(By.NAME, self.update_cart_btn).click
