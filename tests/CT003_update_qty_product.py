@@ -33,4 +33,4 @@ class Test_CT003UpdateQtyProduct:
 
         # Validar se a quantidade foi atualizada
         cart.get_new_qty()
-        assert cart.get_quantity() != cart.get_new_qty()
+        cart.compare_qty()

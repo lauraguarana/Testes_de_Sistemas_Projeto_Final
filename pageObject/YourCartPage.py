@@ -46,10 +46,11 @@ class YourCartPage(PageObject):
     def get_new_qty(self):
         cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
         return cart_new_qty
-
     def compare_qty(self):
-        cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
-        print(cart_new_qty)
+        old_qty = self.get_quantity()
+        print(old_qty)
+        new_qty = self.get_new_qty()
+        print(new_qty)
 
 
 
