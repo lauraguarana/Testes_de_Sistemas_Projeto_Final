@@ -1,3 +1,4 @@
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
 from pageObject.PageObject import PageObject
@@ -23,9 +24,22 @@ class YourCartPage(PageObject):
         self.driver.find_element(By.CLASS_NAME, self.checkout_btn).click()
 
     def update_prod_qty(self):
+        self.driver.find_element(By.CLASS_NAME, self.qty_field).clear()
         self.driver.find_element(By.CLASS_NAME, self.qty_field).send_keys('3')
-        self.driver.find_element(By.NAME, self.update_cart_btn).click
+        self.driver.find_element(By.CLASS_NAME, self.qty_field).send_keys(Keys.ENTER)
+        self.driver.find_element(By.NAME, self.update_cart_btn).click()
 
     def remove_prod(self):
         self.driver.find_element(By.NAME, self.remove_product).click()
-        self.driver.find_element(By.NAME, self.update_cart_btn).click
+        self.driver.find_element(By.NAME, self.update_cart_btn).click()
+
+    def get_quantity(self):
+        return self.driver.find_element(By.CLASS_NAME, self.qty_field).text
+
+    def compare_qty(self, actual_qty, expected_qty):
+
+        if actual_qty != expected_qty:
+            return True
+
+        return False
+
