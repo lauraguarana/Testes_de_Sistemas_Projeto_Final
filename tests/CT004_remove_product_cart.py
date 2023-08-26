@@ -2,7 +2,7 @@ from pageObject.LoginPage import LoginPage
 from pageObject.YourCartPage import YourCartPage
 class Test_CT004RemoveProductCart:
 
-    def test_atualizar_qtd_produto(self, setup):
+    def test_remove_product(self, setup):
         home_page = setup
         home_page.click_login_btn()
         login = LoginPage(driver=home_page.driver)

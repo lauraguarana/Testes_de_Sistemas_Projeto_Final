@@ -1,6 +1,6 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-
+from faker import Faker
 from pageObject.PageObject import PageObject
 
 
@@ -14,6 +14,8 @@ class YourCartPage(PageObject):
     checkout_btn = 'checkout-buttons'
     cart_prod_qty = 0
 
+    fake = Faker()
+
     def __init__(self, driver):
         super(YourCartPage, self).__init__(driver=driver)
 
@@ -25,8 +27,9 @@ class YourCartPage(PageObject):
         self.driver.find_element(By.CLASS_NAME, self.checkout_btn).click()
 
     def update_prod_qty(self):
+        faker = self.fake.random_digit()
         self.driver.find_element(By.CLASS_NAME, self.qty_field).clear()
-        self.driver.find_element(By.CLASS_NAME, self.qty_field).send_keys('3')
+        self.driver.find_element(By.CLASS_NAME, self.qty_field).send_keys(faker)
         self.driver.find_element(By.CLASS_NAME, self.qty_field).send_keys(Keys.ENTER)
         self.driver.find_element(By.NAME, self.update_cart_btn).click()
 
@@ -40,7 +43,6 @@ class YourCartPage(PageObject):
     def compare_qty(self):
         cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
         if self.cart_prod_qty != cart_new_qty:
-            print(cart_new_qty)
             return True
 
         return False
