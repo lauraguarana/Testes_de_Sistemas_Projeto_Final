@@ -11,10 +11,6 @@ class PageObject:
         else:
             if browser == 'chrome':
                 self.driver = webdriver.Chrome()
-            elif browser == 'safari':
-                self.driver = webdriver.Safari()
-            elif browser == 'firefox':
-                self.driver = webdriver.Firefox()
             elif browser == 'edge':
                 self.driver = webdriver.Edge()
             else:

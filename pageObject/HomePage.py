@@ -29,7 +29,7 @@ class HomePage(PageObject):
         self.driver.find_element(By.CLASS_NAME, self.wishlist_button).click()
 
     def click_shopping_cart_btn(self):
-        return WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 10).until(
             EC.visibility_of_any_elements_located((By.CLASS_NAME, self.shopping_cart_button)))
         self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).click()
 

@@ -23,7 +23,6 @@ class Test_CT003UpdateQtyProduct:
         assert home_page.verify_bar_notification()
 
         # Ir para o carrinho de compras
-        assert home_page.click_shopping_cart_btn()
         home_page.click_shopping_cart_btn()
 
         # Verificando se foi para a página do carrinho

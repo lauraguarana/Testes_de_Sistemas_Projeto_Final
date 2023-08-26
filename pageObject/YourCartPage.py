@@ -9,7 +9,7 @@ class YourCartPage(PageObject):
     remove_product = 'removefromcart'
     qty_field = 'qty-input'
     update_cart_btn = 'updatecart'
-    accept_terms = 'terms-of-service'
+    accept_terms = 'termsofservice'
     checkout_btn = 'checkout-buttons'
 
     def __init__(self, driver):
@@ -19,7 +19,7 @@ class YourCartPage(PageObject):
         return self.driver.current_url == self.url
 
     def click_checkout(self):
-        self.driver.find_element(By.CLASS_NAME, self.accept_terms).is_selected()
+        self.driver.find_element(By.ID, self.accept_terms).click()
         self.driver.find_element(By.CLASS_NAME, self.checkout_btn).click()
 
     def update_cart(self):

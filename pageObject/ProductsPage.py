@@ -1,7 +1,5 @@
 import time
 from random import randint
-
-from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
