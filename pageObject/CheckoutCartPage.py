@@ -24,15 +24,19 @@ class CheckoutCartPage(PageObject):
         self.driver.find_element(By.CSS_SELECTOR, self.billing_address_continue_btn).click()
 
     def shipping_address(self):
+        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, self.shipping_address_continue_btn).click()
 
     def shipping_method(self):
+        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, self.shipping_method_continue_btn).click()
 
     def payment_method(self):
+        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, self.payment_method_continue_btn).click()
 
     def payment_information(self):
+        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, self.payment_information_continue_btn).click()
 
     def confirm_order(self):

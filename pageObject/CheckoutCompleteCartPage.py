@@ -18,4 +18,4 @@ class CheckoutCompleteCartPage(PageObject):
         WebDriverWait(self.driver, 10).until(EC.url_matches(self.url))
 
     def check_thank_message(self):
-        return self.driver.find_element(By.CLASS_NAME, self.thank_you_message).text == self.text_thank_you_message
+        return self.driver.find_element(By.XPATH, self.thank_you_message).text == self.text_thank_you_message
