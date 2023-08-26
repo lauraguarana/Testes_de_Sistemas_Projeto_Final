@@ -24,13 +24,16 @@ class Test_CT003UpdateQtyProduct:
         # Ir para o carrinho de compras
         home_page.click_shopping_cart_btn()
 
+        # Validar quantidade de produto no carrinho
+        home_page.verify_shopping_cart_qty()
+
         # Verificando se foi para a página do carrinho
         assert cart.check_cart_page(), "A página mudou"
 
         # Salvar quantidade de produtos e atualizar a quantidade
-        cart.get_quantity()
+        actual_qty = cart.get_quantity()
         cart.update_prod_qty()
 
         # Validar se a quantidade foi atualizada
-        cart.get_new_qty()
-        cart.compare_qty()
+        expected_qty = cart.get_quantity()
+        cart.compare_qty(actual=actual_qty, expected=expected_qty)

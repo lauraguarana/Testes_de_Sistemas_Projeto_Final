@@ -3,12 +3,10 @@ from selenium.webdriver.common.by import By
 from faker import Faker
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from pageObject.PageObject import PageObject
 
 
 class YourCartPage(PageObject):
-
     url = 'https://demowebshop.tricentis.com/cart'
     remove_product = 'removefromcart'
     qty_field = 'qty-input'
@@ -41,18 +39,14 @@ class YourCartPage(PageObject):
         self.driver.find_element(By.NAME, self.update_cart_btn).click()
 
     def get_quantity(self):
-       cart_prod_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
-       return cart_prod_qty
-    def get_new_qty(self):
-        cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
-        return cart_new_qty
-    def compare_qty(self):
-        old_qty = self.get_quantity()
-        print(old_qty)
-        new_qty = self.get_new_qty()
-        print(new_qty)
+        prod_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
+        return prod_qty
 
-
+    def compare_qty(self, actual, expected):
+        validation = actual != expected
+        return validation
 
     def validate_empty_cart(self):
-        return WebDriverWait(self.driver, 5).until(EC.visibility_of_any_elements_located((By.CLASS_NAME, self.empty_cart_msg)))
+        return WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_any_elements_located((By.CLASS_NAME, self.empty_cart_msg)))
+

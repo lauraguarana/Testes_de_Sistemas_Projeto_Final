@@ -20,12 +20,6 @@ class PageObject:
     def close(self):
         self.driver.quit()
 
-    def is_url(self, url):
-        return self.driver.current_url == url
-
     def has_title(self, title_text):
         title_page = self.driver.find_element(By.CLASS_NAME, self.class_title_page).text
         return title_page == title_text
-
-    def check_page(self, url, title_text):
-        return self.is_url(url) and self.has_title(title_text)

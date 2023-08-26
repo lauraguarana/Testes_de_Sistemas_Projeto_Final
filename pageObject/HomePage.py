@@ -11,8 +11,8 @@ class HomePage(PageObject):
     login_button = 'ico-login'
     wishlist_button = 'ico-wishlist'
     shopping_cart_button = 'ico-cart'
-    search_bar = 'search-box-text ui-autocomplete-input'
-    search_button = 'button-1 search-box-button'
+    search_bar = 'small-searchterms'
+    search_button = '//input[@class="button-1 search-box-button"]'
     add_product = '(//input[@value="Add to cart"])[2]'
     bar_notification = 'bar-notification'
     cart_qty = '//span[@class="cart-qty"]'
@@ -37,10 +37,12 @@ class HomePage(PageObject):
         self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).click()
 
     def click_search_btn(self):
-        self.driver.find_element(By.CLASS_NAME, self.search_button).click()
+        self.driver.find_element(By.XPATH, self.search_button).click()
 
-    def search_product(self, productname):
-        self.driver.find_element(By.CLASS_NAME, self.search_bar).send_keys(productname)
+    def search_product(self, product_name):
+        self.driver.implicitly_wait(5)
+        self.driver.find_element(By.ID, self.search_bar).click()
+        self.driver.find_element(By.ID, self.search_bar).send_keys(product_name)
         self.click_search_btn()
 
     def add_product_to_cart(self):
@@ -58,3 +60,4 @@ class HomePage(PageObject):
             self.driver.implicitly_wait(5)
             self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).send_keys(Keys.PAGE_UP)
             self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).click()
+
