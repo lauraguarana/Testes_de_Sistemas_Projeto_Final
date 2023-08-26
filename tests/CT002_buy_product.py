@@ -4,9 +4,9 @@ from pageObject.CheckoutCartPage import CheckoutCartPage
 from pageObject.CheckoutCompleteCartPage import CheckoutCompleteCartPage
 
 
-class Test_CT002EfetuarCompra:
+class Test_CT002BuyProduct:
 
-    def test_efetuar_compra(self, setup):
+    def test_buy_product(self, setup):
         home_page = setup
         home_page.click_login_btn()
         login = LoginPage(driver=home_page.driver)

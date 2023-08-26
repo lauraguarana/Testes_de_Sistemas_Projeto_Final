@@ -2,7 +2,7 @@ from pageObject.LoginPage import LoginPage
 from pageObject.YourCartPage import YourCartPage
 class Test_CT003UpdateQtyProduct:
 
-    def test_atualizar_qtd_produto(self, setup):
+    def test_update_product(self, setup):
         home_page = setup
         home_page.click_login_btn()
         login = LoginPage(driver=home_page.driver)
@@ -32,4 +32,5 @@ class Test_CT003UpdateQtyProduct:
         cart.update_prod_qty()
 
         # Validar se a quantidade foi atualizada
-        cart.compare_qty()
+        cart.get_new_qty()
+        assert cart.get_quantity() != cart.get_new_qty()

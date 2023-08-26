@@ -1,6 +1,9 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from faker import Faker
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from pageObject.PageObject import PageObject
 
 
@@ -12,7 +15,7 @@ class YourCartPage(PageObject):
     update_cart_btn = 'updatecart'
     accept_terms = 'termsofservice'
     checkout_btn = 'checkout-buttons'
-    cart_prod_qty = 0
+    empty_cart_msg = 'order-summary-content'
 
     fake = Faker()
 
@@ -38,12 +41,17 @@ class YourCartPage(PageObject):
         self.driver.find_element(By.NAME, self.update_cart_btn).click()
 
     def get_quantity(self):
-        cart_prod_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
+       cart_prod_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
+       return cart_prod_qty
+    def get_new_qty(self):
+        cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
+        return cart_new_qty
 
     def compare_qty(self):
         cart_new_qty = self.driver.find_element(By.CLASS_NAME, self.qty_field).get_attribute('value')
-        if self.cart_prod_qty != cart_new_qty:
-            return True
+        print(cart_new_qty)
 
-        return False
 
+
+    def validate_empty_cart(self):
+        return WebDriverWait(self.driver, 5).until(EC.visibility_of_any_elements_located((By.CLASS_NAME, self.empty_cart_msg)))

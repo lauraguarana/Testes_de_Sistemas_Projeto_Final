@@ -16,7 +16,7 @@ class LoginPage(PageObject):
         super(LoginPage, self).__init__(driver=driver)
 
     def input_login(self):
-        self.driver.find_element(By.ID, self.email_field).send_keys('joao@joao.com')
+        self.driver.find_element(By.ID, self.email_field).send_keys('joao1@joao.com')
         self.driver.find_element(By.ID, self.password_field).send_keys('123456')
 
     def click_log_in_btn(self):

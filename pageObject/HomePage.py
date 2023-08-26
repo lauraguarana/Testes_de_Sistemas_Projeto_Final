@@ -15,7 +15,7 @@ class HomePage(PageObject):
     search_button = 'button-1 search-box-button'
     add_product = '(//input[@value="Add to cart"])[2]'
     bar_notification = 'bar-notification'
-    cart_qty = 'cart-qty'
+    cart_qty = '//span[@class="cart-qty"]'
 
     def __init__(self, browser):
         super(HomePage, self).__init__(browser=browser)
@@ -50,10 +50,11 @@ class HomePage(PageObject):
         return WebDriverWait(self.driver, 5).until(EC.visibility_of_any_elements_located((By.ID, self.bar_notification)))
 
     def verify_shopping_cart_qty(self):
-        if self.cart_qty != '(0)':
+        cart_prod_qty = self.driver.find_element(By.XPATH, self.cart_qty).text
+        if cart_prod_qty != '(0)':
             self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).click()
         else:
+            self.add_product_to_cart()
+            self.driver.implicitly_wait(5)
             self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).send_keys(Keys.PAGE_UP)
-            WebDriverWait(self.driver, 10).until(
-             EC.visibility_of_any_elements_located((By.CLASS_NAME, self.shopping_cart_button)))
             self.driver.find_element(By.CLASS_NAME, self.shopping_cart_button).click()

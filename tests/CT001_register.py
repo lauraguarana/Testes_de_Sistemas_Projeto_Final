@@ -3,9 +3,9 @@ from faker import Faker
 from pageObject.RegisterPage import RegisterPage
 
 
-class Test_CT001RealizarCadastro:
+class Test_CT001Register:
 
-    def test_realizar_cadastro(self, setup):
+    def test_register(self, setup):
         home_page = setup
         home_page.click_register_btn()
         register = RegisterPage(driver=home_page.driver)

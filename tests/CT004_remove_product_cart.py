@@ -21,3 +21,6 @@ class Test_CT004RemoveProductCart:
         # Remover produto do carrinho
         home_page.verify_shopping_cart_qty()
         cart.remove_prod()
+
+        # Validar se o produto foi removido
+        assert cart.validate_empty_cart(), "Your Shopping Cart is empty!"
